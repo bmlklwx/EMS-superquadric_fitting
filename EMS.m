@@ -1,8 +1,8 @@
 function [x, p] = EMS(point, varargin)
 
-% Written by Weixiao Liu, PhD student @ JHU, NUS
+% Written by Weixiao Liu @ JHU, NUS
 %            Yuwei Wu @ NUS
-% May 24th, 2021, Singapore
+% Initialized on May 24th, 2021, Singapore
 % -------------------------------------------------------------------------
 % DESCRIPTION: This algorithm solves for the optimal superquadrics (SQ) fitting of a given
 %              point cloud. Probabilistic model is adpot to formulate the problem, and
@@ -269,7 +269,7 @@ x(9 : 11) = x(9 : 11) + t0';
 
 % ------------------weighed distance function -----------------------------
     function [value] = weighted_dist(para, X, p, sigma2)
-        if sigma2 > 1e-10 %10
+        if sigma2 > 1e-10 
             value = p .^ (1 / 2) .* distance(X, para);
         else
             value = abs((p .* distance(X, para) .^ 2 + 2 * sigma2 * log(surface_area(para)))) .^ (1 / 2); %0.0002
@@ -299,7 +299,6 @@ x(9 : 11) = x(9 : 11) + t0';
     end
 
 % ------------------parsing  input arguments-------------------------------
-
 function [para] = parseInputArgs(point, varargin)
 
     [n_row, n_col] = size(point);  
@@ -340,10 +339,8 @@ function [para] = parseInputArgs(point, varargin)
         @(x)validateattributes(x, {'single', 'double'}, {'real', 'nonsparse', 'nonempty', 'scalar', 'nonnan', 'finite', 'nonnegative'}));
     parser.addParameter('MaxSwitch', defaults.MaxSwitch, ...
         @(x)validateattributes(x, {'single', 'double'}, {'real', 'nonsparse', 'nonempty', 'scalar', 'nonnan', 'finite', 'integer', 'nonnegative'}));
-    parser.addParameter('AdaptiveUpperBound', defaults.AdaptiveUpperBound, ...
-        @(x)validateattributes(x, {logical}, {'nonsparse', 'scalar', 'nonempty'}));
-    parser.addParameter('Rescale', defaults.Rescale, ...
-        @(x)validateattributes(x, {logical}, {'nonsparse', 'scalar', 'nonempty'}));
+    parser.addParameter('AdaptiveUpperBound', defaults.AdaptiveUpperBound, @islogical);
+    parser.addParameter('Rescale', defaults.Rescale, @islogical);
     
     parser.parse(varargin{:});   
     para = parser.Results;   

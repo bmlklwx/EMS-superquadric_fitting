@@ -22,7 +22,7 @@ title('Original Point Cloud')
 
 % generating random partial view
 partial_ratio = 0.6;
-[point, ~] = randomPartialSuperquadrics(x_gt, arclength, partial_ratio);
+[point] = randomPartialSuperquadrics(x_gt, arclength, partial_ratio);
 figure(2)
 showPoints(point)
 hold on
@@ -51,7 +51,7 @@ title('Partial Point Cloud with Noise and Outliers')
 
 [x_ns] = numerical_fitting(point);
 [x_radial] = superquadricsFitting(point, 'Radial');
-[x_ems] = EMS(point);
+[x_ems] = EMS(point, 'OutlierRatio', 0.2);
 [x_robust] = robust_fitting(point);
 
 disp('---------------------------------------------------------------------')

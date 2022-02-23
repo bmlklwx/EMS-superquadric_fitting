@@ -26,7 +26,7 @@ point = point - t0;
 
 EigenVector0 = [EigenVector(:, 1), EigenVector(:, 2), cross(EigenVector(:, 1), EigenVector(:, 2))];
 EigenVector1 = [EigenVector(:, 1), EigenVector(:, 3), cross(EigenVector(:, 1), EigenVector(:, 3))];
-EigenVector2 = [EigenVector(:, 2), EigenVector(:, 3), cross(EigenVector(:, 2), EigenVector(:, 3))];  
+EigenVector2 = [EigenVector(:, 2), EigenVector(:, 3), cross(EigenVector(:, 2), EigenVector(:, 3))];
 euler0 = [rotm2eul(EigenVector0); rotm2eul(EigenVector1); rotm2eul(EigenVector2)];
 
 point_rot0 = EigenVector0' * point;
@@ -34,9 +34,9 @@ point_rot1 = EigenVector1' * point;
 point_rot2 = EigenVector2' * point;
 
 s0 = [median(abs(point_rot0(1, :))), median(abs(point_rot0(2, :))), median(abs(point_rot0(3, :)));
-      median(abs(point_rot1(1, :))), median(abs(point_rot1(2, :))), median(abs(point_rot1(3, :)));
-      median(abs(point_rot2(1, :))), median(abs(point_rot2(2, :))), median(abs(point_rot2(3, :)));];      
-      
+    median(abs(point_rot1(1, :))), median(abs(point_rot1(2, :))), median(abs(point_rot1(3, :)));
+    median(abs(point_rot2(1, :))), median(abs(point_rot2(2, :))), median(abs(point_rot2(3, :)));];
+
 x0 = [ones(3, 2), s0, euler0, zeros(3, 3)];
 
 upper = 4 * max(max(abs(point)));
@@ -88,9 +88,9 @@ x(9 : 11) = x(9 : 11) + t0';
 
 % -------------------------------------------------------------------------
     function [value] = vanilla_in_out_func(para, X)
-
+        
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11);      
+        t = para(9 : 11);
         
         X_c = R' * X - R' * t';
         %         X_c = X;
@@ -103,8 +103,8 @@ x(9 : 11) = x(9 : 11) + t0';
         % Gross and Boult, 1988
         
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11); 
-         
+        t = para(9 : 11);
+        
         X_c = R' * X - R' * t';
         value = (((((X_c(1, :) / para(3)) .^ (2)) .^ (1 / para(2)) + ...
             ((X_c(2, :) / para(4)) .^ (2)) .^ (1 / para(2))) .^ (para(2) / para(1)) + ...
@@ -115,7 +115,7 @@ x(9 : 11) = x(9 : 11) + t0';
         % Solina and Bajcsy, 1990
         
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11); 
+        t = para(9 : 11);
         
         X_c = R' * X - R' * t';
         value = (para(3) * para(4) * para(5)) ^ (1/ 2) .* (((((X_c(1, :) / para(3)) .^ (2)) .^ (1 / para(2)) + ...
@@ -127,7 +127,7 @@ x(9 : 11) = x(9 : 11) + t0';
         % Gross and Boult, 1988
         
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11); 
+        t = para(9 : 11);
         
         X_c = R' * X - R' * t';
         r_0 = vecnorm(X_c);
@@ -139,9 +139,9 @@ x(9 : 11) = x(9 : 11) + t0';
     end
 
     function [value] = reproject_distance_func(para, X)
-               
+        
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11); 
+        t = para(9 : 11);
         
         X_c = R' * X - R' * t';
         [eta, omega, flag] = point2angle(X_c, para(1 : 2), para(3 : 5));
@@ -150,16 +150,23 @@ x(9 : 11) = x(9 : 11) + t0';
         value = vecnorm(X_c - X_reproject);
     end
     function [value] = normal_func(para, X)
-               
+        
         R = eul2rotm(para(6 : 8));
-        t = para(9 : 11); 
+        t = para(9 : 11);
         
         X_c = R' * X - R' * t';
         [eta, omega, flag] = point2angle(X_c, para(1 : 2), para(3 : 5));
         
         [X_reproject] = angluarReprojection(eta, omega, para(1 : 2), para(3 : 5), flag);
         [normal_reproject] = angleflag2normal(eta, omega, para(1 : 2), para(3 : 5), flag);
-%         value = abs(dot(X_c - X_reproject, normal_reproject));
+        %         value = abs(dot(X_c - X_reproject, normal_reproject));
         value = abs(dot(X_c - X_reproject, normal_reproject)) + vecnorm(X_c - X_reproject);
+    end
+    function [EigenVector, EigenValue] = EigenAnalysis(point)
+        
+        CovM = point * point' ./ size(point, 2);
+        [EigenVector, EigenValue] = eig(CovM);
+        EigenVector = flip(EigenVector, 2);
+        
     end
 end
