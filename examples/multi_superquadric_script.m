@@ -56,7 +56,7 @@ figure(2)
 for i = 1 : size(point_seg, 2)
     for k = 1 : size(point_seg{i}, 2)
         hold on
-        showPoints(point_seg{i}{k}, 'Color', color(color_set, :), 'MarkerSize', 80)
+        showPoints(point_seg{i}{k}, 'Color', color(color_set, :), 'MarkerSize', 10)
         color_set = color_set + 1;
     end
 end
