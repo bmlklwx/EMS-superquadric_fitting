@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/EMS/EMS_recovery.py
+src/EMS/__init__.py
+src/EMS/superquadrics.py
+src/EMS/utilities.py
+src/EMS.egg-info/PKG-INFO
+src/EMS.egg-info/SOURCES.txt
+src/EMS.egg-info/dependency_links.txt
+src/EMS.egg-info/requires.txt
+src/EMS.egg-info/top_level.txt

@@ -134,7 +134,7 @@ def EMS_recovery(
     return sq, p
 
 # ---------------------------------------UTILITIES-------------------------------------------
-@njit
+@njit(cache=True)
 def SimilarityCandidates(x):
     # axis mismatch similarity
     axis_0 = Euler2RotM(x[5: 8])
@@ -258,28 +258,28 @@ def Switch(
 
     return x, cost, sigma2, switch_success
     
-@njit
+@njit(cache=True)
 def SwitchCost(x_candidate, point, p):
     val = np.zeros(x_candidate.shape[0])
     for i in range(x_candidate.shape[0]):
         val[i] = np.sum(p * (Distance(point, x_candidate[i]) ** 2))
     return val
 
-@njit
+@njit(cache=True)
 def EigenAnalysis(point):
     CovM = point.T @ point / point.shape[0]
     EVal, EVec = np.linalg.eig(CovM)
     idx = np.flip(np.argsort(EVal))
     return EVec[:, idx]
 
-@njit
+@njit(cache=True)
 def BoundVolume(point):
     V = (np.max(point[:, 0]) - np.min(point[:, 0])) * \
         (np.max(point[:, 1]) - np.min(point[:, 1])) * \
         (np.max(point[:, 2]) - np.min(point[:, 2]))
     return V
 
-@njit
+@njit(cache=True)
 def Distance(point, x):
     # approximate the distance from a point to its nearest point on the superquadric surface
     # extract transformation from superquadric parameters
@@ -300,7 +300,7 @@ def Distance(point, x):
     )
     return dist
 
-@njit
+@njit(cache=True)
 def CostFunc(x, point, p, sigma2):
     if sigma2 > 1e-10:
         value = p ** 0.5 * Distance(point, x)
@@ -309,7 +309,7 @@ def CostFunc(x, point, p, sigma2):
                        sigma2 * np.log(SurfaceArea(x)))) ** 0.5
     return value
 
-@njit
+@njit(cache=True)
 def OutlierProb(dist, sigma2, w, p0):
     c = (2 * np.pi * sigma2) ** (- 3 / 2)
     const = (w * p0) / (c * (1 - w))
@@ -317,7 +317,7 @@ def OutlierProb(dist, sigma2, w, p0):
     p = p / (const + p)
     return p
 
-@njit
+@njit(cache=True)
 def SurfaceArea(x):
     a00 = 8 * (x[2] * x[3] + x[3] * x[4] + x[2] * x[4])
     a02 = 8 * (x[2] ** 2 + x[3] ** 2) ** 0.5 * x[4] + 4 * x[2] * x[3]
@@ -332,7 +332,7 @@ def SurfaceArea(x):
                                                             [a20, a22]]) @ np.array([[1 - x[1] / 2], [x[1] / 2]])
     return area[0, 0]
 
-@njit
+@njit(cache=True)
 def Euler2RotM(euler):
     # from euler angles to rotation matrix (ZYX_intrinsic)
 
@@ -356,7 +356,7 @@ def Euler2RotM(euler):
 
     return RotZ @ RotY @ RotX
 
-@njit
+@njit(cache=True)
 def RotM2Euler(R):
 
     s = np.sqrt(R[0, 0] * R[0, 0] + R[1, 0] * R[1, 0])
