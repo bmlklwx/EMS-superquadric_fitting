@@ -95,10 +95,3 @@ class rotations(object):
     @euler.setter
     def euler(self, val):
         self._r = R.from_euler('ZYX', val)
-
-
-# if __name__ == '__main__':
-#     sq = superquadric([0.2, 1], [1, 2, 1], [0, np.pi/3, np.pi/6], [0, 1, 0])
-#     sq.showSuperquadric(arclength = 0.1)
-#     print(sq.euler)
-#     print(sq.RotM)
