@@ -34,6 +34,7 @@ def main(argv):
     )
     parser.add_argument(
         '--outlierRatio',
+        type = float,
         default = 0.2,       
         help='Print the recovered superquadric parameter.'
     )
@@ -66,7 +67,7 @@ def main(argv):
     
     if args.visualize is True:
         fig = mlab.figure(size=(400, 400), bgcolor=(1, 1, 1))
-        sq_recovered.showSuperquadric(arclength = 0.0)
+        sq_recovered.showSuperquadric(arclength = 0.2)
         showPoints(point)
         mlab.show()
 
