@@ -1,1 +1,4 @@
 /Python/dist/
+/Python/src/EMS.egg-info
+/MATLAB/example_scripts/data/000.ply
+*.asv
