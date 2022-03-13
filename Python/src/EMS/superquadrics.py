@@ -65,7 +65,7 @@ class superquadric(object):
         self._r = R.from_quat(val)
 
     def showSuperquadric(self, threshold = 1e-2, num_limit = 10000, arclength = 0.02):
-        EMS.utilities.showSuperquadrics(self, threshold = 1e-2, num_limit = 10000, arclength = 0.02)
+        EMS.utilities.showSuperquadrics(self, threshold = threshold, num_limit = num_limit, arclength = arclength)
 
 
 class rotations(object):
