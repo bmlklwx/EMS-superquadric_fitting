@@ -47,12 +47,15 @@ showPoints(point)
 axis equal
 title('Partial Point Cloud with Noise and Outliers')
 
+%% save ply
+pc = pointCloud(point');
+pcwrite(pc, './data/000.ply');
+
 %% Superquadric Recovery
 
 [x_ns] = numerical_fitting(point);
 [x_radial] = superquadricsFitting(point, 'Radial');
 [x_ems] = EMS(point, 'OutlierRatio', 0.2);
-[x_robust] = robust_fitting(point);
 
 disp('---------------------------------------------------------------------')
 disp('Groud Truth parameters are');
@@ -62,8 +65,6 @@ disp('NS Fitted parameters are')
 disp(x_ns)
 disp('Radial-LSQ Fitted parameters are')
 disp(x_radial)
-disp('Robust Fitted parameters are')
-disp(x_robust)
 disp('EMS Fitted parameters are')
 disp(x_ems)
 disp('---------------------------------------------------------------------')
@@ -88,10 +89,3 @@ hold on
 showSuperquadrics(x_ems, 'Color', [0 0 1], 'FaceAlpha', 0.7, 'Arclength', 0.1, 'Light', 1);
 hold off
 title('EMS Recovered Superquadric')
-
-figure(8)
-showPoints(point, 'Color', 'r')
-hold on
-showSuperquadrics(x_robust, 'Color', [0 0 1], 'FaceAlpha', 0.7, 'Arclength', 0.1, 'Light', 1);
-hold off
-title('Robust Recovered Superquadric')

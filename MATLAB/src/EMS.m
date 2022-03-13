@@ -61,7 +61,7 @@ end
 EigenVector = [EigenVector(:, 1), EigenVector(:, 3), cross(EigenVector(:, 1), EigenVector(:, 3))];
 euler0 = rotm2eul(EigenVector);
 
-% initialize as median along transformed axises
+% initialize scale as median along transformed axis
 point_rot0 = EigenVector' * point;
 s0 = [median(abs(point_rot0(1, :))), median(abs(point_rot0(2, :))), median(abs(point_rot0(3, :)))];
 
@@ -120,9 +120,9 @@ for iterEM = 1 : iterEM_max
     
     % update sigma
     sigma2_n = cost_n / (3 * sum(p));
-
+    
     % evaluate relative cost decrease
-    relative_cost = (cost - cost_n) / cost_n;    
+    relative_cost = (cost - cost_n) / cost_n;     
     
     if (cost_n < toleranceEM && iterEM > 1) || (relative_cost < relative_toleranceEM && switched >= para.MaxSwitch && iterEM > iterEM_min)
         x = x_n;

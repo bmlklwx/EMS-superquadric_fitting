@@ -1,10 +1,10 @@
-%% Loading .ply files (point cloud)
+%% Loading .ply/ .pcd files (point cloud)
 
 clear
 close all
 
 % select a .ply file
-[file,path] = uigetfile('*.ply','Please select the point cloud files', ...
+[file,path] = uigetfile({'*.ply;*.pcd'},'Please select the point cloud files', ...
     './data', 'MultiSelect','off');
 if isequal(file, 0)
     error('No point cloud selected.');
@@ -12,7 +12,16 @@ end
 
 % read point cloud and transform into array
 pc = pcread([path, file]);
-point = pc.Location';
+point = double(pc.Location');
+
+% rescale data
+rescale = 1;
+if rescale == 1
+    point = point - mean(point, 2);
+    max_length = max(max(point));
+    scale = max_length / 10;
+    point = point / scale;
+end
 
 % show input point cloud
 if strcmp(file(1 : 3), 'cat')
@@ -63,6 +72,7 @@ end
 hold off
 view(view_vector)
 camroll(roll)
+title('Superquadric Guided Point Cloud Segmentation')
 
 %% show superquadrics
 
@@ -70,6 +80,7 @@ camroll(roll)
 rng(10);
 color = rand(100, 3);
 
+% show input point cloud
 show_original_point = 0;
 
 % rendering superquadric representation
@@ -90,7 +101,7 @@ for i = 1 : size(x, 2)
     end
 end
 hold off
-
+title('Superquadric Representation')
 view(view_vector)
 camroll(roll)
 light
