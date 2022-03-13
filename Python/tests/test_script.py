@@ -32,6 +32,11 @@ def main(argv):
         action = 'store_true',       
         help='Print the recovered superquadric parameter.'
     )
+    parser.add_argument(
+        '--outlierRatio',
+        default = 0.2,       
+        help='Print the recovered superquadric parameter.'
+    )
 
     args = parser.parse_args(argv)
     
@@ -45,7 +50,7 @@ def main(argv):
     sq_recovered, p = EMS_recovery(point)
 
     start = timeit.default_timer()
-    sq_recovered, p = EMS_recovery(point, OutlierRatio=0.2)
+    sq_recovered, p = EMS_recovery(point, OutlierRatio=args.outlierRatio)
     stop = timeit.default_timer()
     print('Superquadric Recovered.')
     if args.runtime is True:
@@ -61,7 +66,7 @@ def main(argv):
     
     if args.visualize is True:
         fig = mlab.figure(size=(400, 400), bgcolor=(1, 1, 1))
-        sq_recovered.showSuperquadric(arclength = 0.2)
+        sq_recovered.showSuperquadric(arclength = 0.0)
         showPoints(point)
         mlab.show()
 
