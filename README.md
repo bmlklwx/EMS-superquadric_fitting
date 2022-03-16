@@ -8,4 +8,4 @@ Weixiao Liu, Yuwei Wu, [Sipu Ruan](https://ruansp.github.io/), [Gregory S. Chiri
 
 We propose an algorithm to recover a superquadric surface/primitive from a given point cloud, with good robustness, accuracy and efficiency.
 
-    ![superquadrics](/figures/Superquadrics.png)
+![superquadrics](/figures/Superquadrics.png)
