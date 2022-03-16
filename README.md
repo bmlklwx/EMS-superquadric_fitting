@@ -23,6 +23,11 @@ We propose an algorithm, Expectation, Maximization, and Switching (EMS), to solv
 We show that our method can be extended to the multi-superquadrics recovery for complex objects. 
 The proposed method outperforms the state-of-the-art in terms of accuracy, efficiency, and robustness on both synthetic and real-world datasets.
 
-## Dependency and Installation
+## Implementations
 
-This repo provides two implementations in both [MATALB](/MATLAB) and [Python](/Python).
+This repo provides two implementations in both [MATALB](/MATLAB) and [Python](/Python). 
+The algrithm was first implement in MATALB and later rewritten in Python for a broader audience.
+Detailed guidelines for dependency and installation please refer to the linked READMEs (for [MATALB](/MATLAB) and for [Python](/Python)).
+The demo for the multiple superquadric recovery is only available in MATLAB.
+The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler).  
+A C++ version is planned.
