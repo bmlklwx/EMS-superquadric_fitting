@@ -1,2 +1,9 @@
-# EMS-probabilistic_superquadric_fitting
-A probabilistic method to recover superquadrics from point clouds.
+## Guidelines for the MATLAB Implementation
+
+### Installation
+
+### Run Demo
+
+#### Demo for single superquadric recovery
+
+#### Demo for multiple superquadric recovery
