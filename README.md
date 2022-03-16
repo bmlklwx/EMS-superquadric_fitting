@@ -29,5 +29,4 @@ This repo provides two implementations in both [MATALB](/MATLAB) and [Python](/P
 The algrithm was first implement in MATALB and later rewritten in Python for a broader audience.
 Detailed guidelines for dependency and installation please refer to the linked READMEs (for [MATALB](/MATLAB) and for [Python](/Python)).
 The demo for the multiple superquadric recovery is only available in MATLAB.
-The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler).  
-A C++ version is planned.
+The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler). C++ version is planned.
