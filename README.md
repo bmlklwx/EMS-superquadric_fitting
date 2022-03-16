@@ -25,4 +25,4 @@ The proposed method outperforms the state-of-the-art in terms of accuracy, effic
 
 ## Dependency and Installation
 
-This repo provides two implementations in both [MATALB](/MATLAB/README.md) and [Python](/Python/README.md).
+This repo provides two implementations in both [MATALB](/MATLAB) and [Python](/Python).
