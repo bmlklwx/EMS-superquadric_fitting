@@ -6,6 +6,7 @@ This repo provides the source code for the CVPR2022 paper:
 > Weixiao Liu, Yuwei Wu, [Sipu Ruan](https://ruansp.github.io/), [Gregory S. Chirikjian](https://cde.nus.edu.sg/me/staff/chirikjian-gregory-s/)
 
 We propose an algorithm to recover a superquadric surface/primitive from a given point cloud, with good robustness, accuracy and efficiency.
+The superquadric abstraction of a point cloud gives a concise, volumetric, and geometrically meaningful interpretation of objects and environment, and thus provides a basic framework for higher level tasks, *e.g.*, motion planning, collision detection and robot-environment interaction.
 
 <img src="/figures/Superquadrics.png" alt="superquadrics" width="600"/>
 
@@ -23,3 +24,5 @@ We show that our method can be extended to the multi-superquadrics recovery for 
 The proposed method outperforms the state-of-the-art in terms of accuracy, efficiency, and robustness on both synthetic and real-world datasets.
 
 ## Dependency and Installation
+
+This repo provides two implementations in both [MATALB](/MATLAB/README.md) and [Python](/Python/README.md).
