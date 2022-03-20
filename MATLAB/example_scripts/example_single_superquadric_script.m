@@ -3,7 +3,7 @@ clear
 close all
 
 % read .ply
-pc = pcread('./data/noisy_pointCloud_example_2.ply');
+pc = pcread('./data/noisy_pointCloud_example_1.ply');
 point = pc.Location';
 
 %% Superquadric Recovery

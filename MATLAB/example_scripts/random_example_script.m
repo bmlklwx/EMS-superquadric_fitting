@@ -47,10 +47,6 @@ showPoints(point)
 axis equal
 title('Partial Point Cloud with Noise and Outliers')
 
-%% save ply
-pc = pointCloud(point');
-pcwrite(pc, './data/000.ply');
-
 %% Superquadric Recovery
 
 [x_ns] = numerical_fitting(point);
