@@ -6,9 +6,6 @@ close all
 pc = pcread('./data/noisy_pointCloud_example_2.ply');
 point = pc.Location';
 
-% where epsilon = [0.1108 0.2786], a = [0.6506 1.4863 1.8478], 
-% euler = [2.1758 2.6031 0.3712],  translation = [-0.0551 -0.0617 0.0120]
-
 %% Superquadric Recovery
 
 % applying ns method
