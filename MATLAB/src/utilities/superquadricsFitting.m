@@ -1,7 +1,4 @@
 function [x] = superquadricsFitting(point, cost_function_type)
-%
-%
-
 % Written by Weixiao Liu, PhD student @ JHU, NUS
 % May 24th, 2021, Singapore
 % -------------------------------------------------------------------------
@@ -13,7 +10,6 @@ function [x] = superquadricsFitting(point, cost_function_type)
 % OUTPUT:
 
 % -------------------------------------------------------------------------
-
 options = optimoptions('lsqnonlin', 'Algorithm', 'levenberg-marquardt', 'Display','off', 'MaxIterations', 50);
 % 'StepTolerance', 1e-10
 % 'trust-region-reflective','levenberg-marquardt', 'iter'

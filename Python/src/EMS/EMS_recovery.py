@@ -15,6 +15,7 @@ def EMS_recovery(
 
     # ---------------------------------------INITIALIZATIONS--------------------------------------------
     # translate the points to the center of mass
+    point = np.array(point, dtype=float)
     t0 = np.mean(point, 0)
     point = point - t0
 
@@ -237,6 +238,9 @@ def Switch(
             ub[2: 5] = ub_a
             ub[8: 11] = ub_a
             lb[8: 11] = -ub_a
+
+        x_candidate[i] = np.minimum(x_candidate[i], ub)
+        x_candidate[i] = np.maximum(x_candidate[i], lb)
 
         optfunc = least_squares(CostFunc, x_candidate[i], bounds=(
                 lb, ub), max_nfev=MaxOptiIterations, args=(point, p, sigma2))

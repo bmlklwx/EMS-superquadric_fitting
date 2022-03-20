@@ -44,6 +44,7 @@ def uniformSampledSuperellipse(epsilon, scale, threshold = 1e-2, num_limit = 100
         theta_temp = theta[i] + dt
 
         if theta_temp > np.pi / 4:
+            theta[i + 1] = np.pi / 4
             break
         else:
             if i + 1 < num_limit:
@@ -54,7 +55,7 @@ def uniformSampledSuperellipse(epsilon, scale, threshold = 1e-2, num_limit = 100
                 num_limit,
                 'Please decrease the sampling arclength.'
                 )
-    critical = i
+    critical = i + 1
 
     for j in range(critical + 1, num_limit):
         dt = dtheta(theta[j], arclength, threshold, np.flip(scale), epsilon)
@@ -111,7 +112,7 @@ def read_ply(path_to_file):
     return np.array([[x, y, z] for x, y, z in pc])
 
 
-def showPoints(point):
+def showPoints(point, scale_factor=0.1):
     
     mlab.view(azimuth=0.0, elevation=0.0, distance=2)
-    mlab.points3d(point[:, 0], point[:, 1], point[:, 2], scale_factor=0.1, color=(1, 0, 0))
+    mlab.points3d(point[:, 0], point[:, 1], point[:, 2], scale_factor=scale_factor, color=(1, 0, 0))

@@ -3,7 +3,7 @@ clear
 close all
 
 % read .ply
-pc = pcread('./data/noisy_pointCloud_example.ply');
+pc = pcread('./data/noisy_pointCloud_example_2.ply');
 point = pc.Location';
 
 % ground truth configuration of the superquadric

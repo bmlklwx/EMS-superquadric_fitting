@@ -91,6 +91,7 @@ point = R * point' + t';
             theta_temp = theta(m - 1) + dt;
             
             if theta_temp > pi/4
+                theta(m) = pi/4;
                 break
             else
                 if m < num_limit
@@ -103,7 +104,7 @@ point = R * point' + t';
                 end
             end
         end
-        critical = m;
+        critical = m + 1;
         seg(critical) = 1;
         for n = critical + 1 : num_limit
             [dt, seg_temp] = dtheta(theta(n - 1), arclength, threshold, flip(scale), sigma);
