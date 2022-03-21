@@ -2,19 +2,32 @@
 clear
 close all
 
-% generate a random superquadric point cloud
-% generating superquadric parameters
+% add path
+addpath('../src/')
+addpath('../src/utilities/')
+
+% ------------------generating superquadric parameters---------------------
 epsilon = 2 * rand(1, 2) + 0.004;
 a = 2 * rand(1, 3) + 0.5;
-euler = [2 * pi * rand, 2 * pi * rand, pi * rand] ;
+
+% uniformly sampling on Special Orthogonal space
+theta = 2 * pi * rand;
+% generate random rotation axis uniformly on unit sphere
+tr = 2 * rand - 1;
+thetar = acos(tr);
+phir = 2*pi * rand;
+nr = [sin(thetar)*cos(phir); sin(thetar)*cos(phir); cos(thetar)];
+R = expm(theta .* [0 -nr(3) nr(2); nr(3) 0 -nr(1); -nr(2) nr(1) 0]);
+euler = rotm2eul(R);
+
 t = 0.2 * rand(1, 3) - 0.1;
-R = eul2rotm(euler);
 x_gt = [epsilon, a, euler, t];
+% -------------------------------------------------------------------------
 
 % point cloud sampling arclength
 arclength = 0.2;
 
-% generating points and the corresponding ground truth surface normal direction 
+% generating points
 [point] = sphericalProduct_sampling(x_gt, arclength);
 figure(1)
 showPoints(point)

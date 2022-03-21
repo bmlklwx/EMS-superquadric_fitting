@@ -2,6 +2,10 @@
 clear
 close all
 
+% add path
+addpath('../src/')
+addpath('../src/utilities/')
+
 % read .ply
 pc = pcread('./data/noisy_pointCloud_example_1.ply');
 point = pc.Location';

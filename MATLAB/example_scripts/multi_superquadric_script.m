@@ -1,7 +1,10 @@
 %% Loading .ply/ .pcd files (point cloud)
-
 clear
 close all
+
+% add path
+addpath('../src/')
+addpath('../src/utilities/')
 
 % select a .ply file
 [file,path] = uigetfile({'*.ply;*.pcd'},'Please select the point cloud files', ...
