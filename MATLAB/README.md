@@ -6,6 +6,8 @@ This is the guideline and structual explanation of the MATLAB implementation of 
 
 The code is written and tested on MATALB R2021a.
 Should be compatible with releases newer than R2017.
+The EMS algorithm is self-contained.
+To run hierarchical-EMS and demo scripts, the Computer Vision Toolbox is required.
 For compaitibility problems, you are more than welcomed to put up an issue.
 
 ### File Structure
