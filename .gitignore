@@ -2,6 +2,7 @@
 /Python/src/EMS.egg-info
 /Python/src/EMS/__pycache__
 /MATLAB/example_scripts/data/000.ply
+/MATLAB/doc
 /MATLAB/example_scripts/generating_pointClouds.m
 
 *.asv
