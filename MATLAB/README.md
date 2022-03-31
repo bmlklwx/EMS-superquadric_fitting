@@ -29,5 +29,5 @@ There are two test scripts you can play with: `/example_scripts/example_single_s
 
 #### Demo for multiple superquadric recovery
 
-For multiple superquadric recovery, you can run the demo script `/example_scripts/multi_superquadric_script.m`.
+For multiple superquadric recovery, please run the demo script `/example_scripts/multi_superquadric_script.m`.
 You can load point clouds from `/example_scripts/data/multi_superquadrics`.
