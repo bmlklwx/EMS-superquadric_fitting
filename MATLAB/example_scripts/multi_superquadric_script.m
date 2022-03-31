@@ -8,7 +8,7 @@ addpath('../src/utilities/')
 
 % select a .ply file
 [file,path] = uigetfile({'*.ply;*.pcd'},'Please select the point cloud files', ...
-    './data', 'MultiSelect','off');
+    './data/multi_superquadrics', 'MultiSelect','off');
 if isequal(file, 0)
     error('No point cloud selected.');
 end
