@@ -1,4 +1,6 @@
-## Python Implementation
+## Guidelines for Python Implementation
+
+readme work in progress
 
 ### Dependency
 
