@@ -34,5 +34,4 @@ For example, in terminal type in
 
      python test_script.py *.ply file location* --result --runtime --visualize
 
-Note the first run of the code tends to be longer, since the JIT will translate the Python and NumPy code into fast machine code (and will be cached).
- 
+Note the first run of the code takes longer, since the JIT will translate the Python and NumPy code into fast machine code (and will be cached for futher calls).
