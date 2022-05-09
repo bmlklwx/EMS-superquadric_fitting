@@ -32,7 +32,7 @@ The demo reads a `.ply` point cloud and returns the parameters of the recovered 
 
 For example, in terminal type in
 
-     python test_script.py *.ply file location* --result --visualize --runtime
+     python test_script.py *.ply file location* --result --runtime --visualize
 
 Note the first run of the code tends to be longer, since the JIT will translate the Python and NumPy code into fast machine code (and will be cached).
  
