@@ -6,11 +6,11 @@ This repo provides the source code for the CVPR2022 paper:
 > Weixiao Liu, Yuwei Wu, [Sipu Ruan](https://ruansp.github.io/), [Gregory S. Chirikjian](https://cde.nus.edu.sg/me/staff/chirikjian-gregory-s/)
 
 We propose an algorithm to recover a superquadric surface/primitive from a given point cloud, with good robustness, accuracy and efficiency.
-The superquadric abstracted from a point cloud provides a concise, volumetric, and geometrically meaningful interpretation of objects and environment. It can work as a low-level volumetric representation, from which higher level tasks, *e.g.*, motion planning, collision detection and robot-environment interaction, can be built up.
+The superquadric recovered from a point cloud provides a concise, volumetric, and geometrically meaningful interpretation of objects and environment. It can work as a low-level volumetric representation, from which higher level tasks, *e.g.*, motion planning, collision detection and robot-environment interaction, can be built up.
 
 <img src="/figures/Superquadrics.png" alt="superquadrics" width="600"/>
 
-## Abstration
+## Abstract
 
 Interpreting objects with basic geometric primitives has long been studied in computer vision. 
 Among geometric primitives, superquadrics are well known for their simple implicit expressions and capability of representing a wide range of shapes with few parameters. 
