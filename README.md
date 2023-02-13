@@ -51,4 +51,6 @@ In the [Python](/Python) implementation, the functions above are summarized in [
 ## Related Works
 If you find the repo useful, please cite
 
-> W. Liu, Y. Wu, S. Ruan and G. S. Chirikjian, "Robust and Accurate Superquadric Recovery: a Probabilistic Approach," 2022 IEEE/CVF Conference on Computer Vision and > Pattern Recognition (CVPR), New Orleans, LA, USA, 2022, pp. 2666-2675, doi: 10.1109/CVPR52688.2022.00270.
+> W. Liu, Y. Wu, S. Ruan and G. S. Chirikjian, "Robust and Accurate Superquadric Recovery: a Probabilistic Approach," 
+> 2022 IEEE/CVF Conference on Computer Vision and  Pattern Recognition (CVPR), New Orleans, LA, USA, 2022, pp. 2666-2675, 
+> doi: 10.1109/CVPR52688.2022.00270.
