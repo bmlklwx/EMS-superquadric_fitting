@@ -27,9 +27,23 @@ The proposed method outperforms the state-of-the-art in terms of accuracy, effic
 
 This repo provides two implementations in both [MATALB](/MATLAB) and [Python](/Python). 
 The algrithm was first implemented in MATALB and later rewritten in Python for a broader audience.
-Detailed guidelines for dependency and installation please refer to the linked READMEs (for [MATALB](/MATLAB) and for [Python](/Python)).
-The demo for the multiple superquadric recovery is only available in MATLAB.
-The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler). C++ version is planned.
+Detailed guidelines for dependency and installation please refer to the linked READMEs (for [MATLAB](/MATLAB) and for [Python](/Python)).
+~~The demo for the multiple superquadric recovery is only available in MATLAB.~~
+The demo for the multiple superquadric recovery is now available in Python as well.
+Please refer to [multiquadric_test.py](/Python/tests/multiquadric_test.py).
+Thanks @stanzwinkels for his contribution.
+The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler). 
+C++ version is planned.
+
+## Superquadrics Sammpling, visiualization and baseline recovery methods
+
+This repo also provide several useful utility functions related to superquadrics.
+In the [MATLAB](/MATLAB) implementation, the utilities are located in [/MATLAB/src/utilities](/MATLAB/src/utilities), where
+*superquadricsFitting.m summarized the baseline least square superquadric recovery methods, based on different objective functions (implicit function, radial distance ...).
+*numerical_fitting.m is an implementation of the numerical stable recovery method proposed in N. Vaskevicius and A. Birk, "Revisiting Superquadric Fitting: A Numerically Stable Formulation," in IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 41, no. 1, pp. 220-233, 1 Jan. 2019.
+*showSuperquadrics.m is for visualization of superquadrics. Note that one can choose to visualize a tapered superquadric in its option.
+*sphericalProduct_sampling is an algorithm to sample points almost uniformly spaced on the surface of a given superquadric.
+
 
 ## Related Works
 To be added ...
