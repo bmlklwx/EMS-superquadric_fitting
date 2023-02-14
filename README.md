@@ -35,7 +35,7 @@ Thanks @[stanzwinkels](https://github.com/stanzwinkels) for his contribution.
 The Python implementation shows better efficiency (about 3-5 times faster), with the help of NUMBA (a JIT compiler). 
 C++ version is planned.
 
-## Superquadrics Sampling, visiualization and other utilities functions
+## Superquadrics Sampling, visiualization and other utility functions
 
 This repo also provide several useful utility functions related to superquadrics.
 
