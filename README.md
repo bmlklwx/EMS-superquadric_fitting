@@ -5,6 +5,8 @@ This repo provides the source code for the CVPR2022 paper:
 > [**Robust and Accurate Superquadric Recovery: a Probabilistic Approach**](https://arxiv.org/abs/2111.14517 "ArXiv version of the paper.")  
 > Weixiao Liu, Yuwei Wu, [Sipu Ruan](https://ruansp.github.io/), [Gregory S. Chirikjian](https://cde.nus.edu.sg/me/staff/chirikjian-gregory-s/)
 
+Please give a star and cite if you find this repo useful.
+
 We propose an algorithm to recover a superquadric surface/primitive from a given point cloud, with good robustness, accuracy and efficiency.
 The superquadric recovered from a point cloud provides a concise, volumetric, and geometrically meaningful interpretation of objects and environment. It can work as a low-level volumetric representation, from which higher level tasks, *e.g.*, motion planning, collision detection and robot-environment interaction, can be built up.
 
