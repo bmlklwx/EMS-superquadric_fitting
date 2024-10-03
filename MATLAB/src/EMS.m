@@ -302,6 +302,49 @@ x(9 : 11) = x(9 : 11) + t0';
             value(i, 1) = sum(p .* (distance(X, para(i, :)) .^ 2), 2);
         end
     end
+% -------------------------------------------------------------------------
+    function eul = rotm2eul(rotm)
+        if ( (size(rotm,1) ~= 3) || (size(rotm,2) ~= 3) )
+            error('rotm2eul: %s', WBM.wbmErrorMsg.WRONG_MAT_DIM);
+        end
+    
+        eul = zeros(1,3);
+        if (rotm(3,1) < 1)
+            if (rotm(3,1) > -1)
+                eul(1,1) = atan2(rotm(2,1), rotm(1,1)); 
+                eul(1,2) = asin(-rotm(3,1));           
+                eul(1,3) = atan2(rotm(3,2), rotm(3,3)); 
+            else
+                eul(1,1) = -atan2(-rotm(2,3), rotm(2,2));
+                eul(1,2) = pi/2;
+                eul(1,3) = 0;
+            end
+        else
+            eul(1,1) = atan2(-rotm(2,3), rotm(2,2));
+            eul(1,2) = -pi/2;
+            eul(1,3) = 0;
+        end
+    end
+% -------------------------------------------------------------------------
+function R = rotz(t)
+    
+    t = t *pi/180;
+    ct = cos(t);
+    st = sin(t);
+    if ~isa(t, 'sym')
+        if abs(st) < eps
+            st = 0;
+        end
+        if abs(ct) < eps
+            ct = 0;
+        end
+    end
+    R = [
+        ct  -st  0
+        st   ct  0
+        0    0   1
+        ];
+end
 
 % ------------------parsing  input arguments-------------------------------
 function [para] = parseInputArgs(point, varargin)
