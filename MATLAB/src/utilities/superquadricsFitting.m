@@ -145,6 +145,7 @@ x(9 : 11) = x(9 : 11) + t0';
         
         value = vecnorm(X_c - X_reproject);
     end
+
     function [value] = normal_func(para, X)
         
         R = eul2rotm(para(6 : 8));
@@ -158,6 +159,7 @@ x(9 : 11) = x(9 : 11) + t0';
         %         value = abs(dot(X_c - X_reproject, normal_reproject));
         value = abs(dot(X_c - X_reproject, normal_reproject)) + vecnorm(X_c - X_reproject);
     end
+
     function [EigenVector, EigenValue] = EigenAnalysis(point)
         
         CovM = point * point' ./ size(point, 2);
@@ -165,4 +167,66 @@ x(9 : 11) = x(9 : 11) + t0';
         EigenVector = flip(EigenVector, 2);
         
     end
+
+    function [eta, omega, flag] = point2angle(point, epsilon, a)
+    
+        flag(:, 1) = sign(point(1, :));
+        flag(:, 2) = sign(point(2, :));
+        flag(:, 3) = sign(point(3, :));
+        point = abs(point);
+        
+        log_ratio = log(point(2, :)) - log(point(1, :)) + log(a(1)) - log(a(2));
+        flag(:, 4) = log_ratio > 0;
+        
+        log_tan_omega = 1 / epsilon(2) .* (-sign(log_ratio)) .* log_ratio;
+        tan_omega = exp(log_tan_omega);
+        omega = atan(tan_omega);
+        
+        omega_add = omega;
+        omega_add(flag(:, 4) == 0) = sin(omega_add(flag(:, 4) == 0));
+        omega_add(flag(:, 4) == 1) = cos(omega_add(flag(:, 4) == 1));
+        
+        % log_ratio = log(point(:, 3)) -log(point(:, 2)) + log(a(2)) - log(a(3)) + epsilon(2) .* log(omega_add);
+        log_ratio = log(point(3, :)) -log(point(2, :)) + log(a(2)) - log(a(3)) + log(omega_add .^ epsilon(2));
+        
+        flag(:, 5) = log_ratio > 0;
+        
+        log_tan_eta = 1 / epsilon(1) .* (-sign(log_ratio)) .* log_ratio;
+        tan_eta = exp(log_tan_eta);
+        eta = atan(tan_eta);
+    
+    end
+
+    function [point_reproject] = angluarReprojection(eta, omega, epsilon, a,flag)
+        
+        point_reproject1 = [omega; zeros(1, size(omega, 2))];
+        point_reproject2 = [eta; zeros(1, size(eta, 2))];
+        
+        point_reproject1(:, flag(:, 4) == 0) = angle2points(point_reproject1(1, flag(:, 4) == 0), [a(1), a(2)], epsilon(2));
+        point_reproject1(:, flag(:, 4) == 1) = flip(angle2points(point_reproject1(1, flag(:, 4) == 1), [a(2), a(1)], epsilon(2)), 1);
+        
+        point_reproject2(:, flag(:, 5) == 0) = angle2points(point_reproject2(1, flag(:, 5) == 0), [1, a(3)], epsilon(1));
+        point_reproject2(:, flag(:, 5) == 1) = flip(angle2points(point_reproject2(1, flag(:, 5) == 1), [a(3), 1], epsilon(1)), 1);
+        
+        point_reproject = [point_reproject1 .* point_reproject2(1, :); point_reproject2(2, :)];
+        point_reproject = point_reproject .* flag(:, 1 : 3)';
+        
+    end
+
+    function [normal] = angleflag2normal(eta, omega, epsilon, a, flag)
+        normal1 = [omega; zeros(1, size(omega, 2))];
+        normal2 = [eta; zeros(1, size(eta, 2))];
+        
+        normal1(:, flag(:, 4) == 0) = angle2normals(normal1(1, flag(:, 4) == 0), [a(1), a(2)], epsilon(2));
+        normal1(:, flag(:, 4) == 1) = flip(angle2normals(normal1(1, flag(:, 4) == 1), [a(2), a(1)], epsilon(2)), 1);
+        
+        normal2(:, flag(:, 5) == 0) = angle2normals(normal2(1, flag(:, 5) == 0), [1, a(3)], epsilon(1));
+        normal2(:, flag(:, 5) == 1) = flip(angle2normals(normal2(1, flag(:, 5) == 1), [a(3), 1], epsilon(1)), 1);
+        
+        normal = [normal1 .* normal2(1, :); normal2(2, :)];
+        % normal = normal / vecnorm(normal);
+        normal = normal .* flag(:, 1 : 3)';
+    end
+
+
 end

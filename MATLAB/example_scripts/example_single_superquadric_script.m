@@ -7,7 +7,7 @@ addpath('../src/')
 addpath('../src/utilities/')
 
 % read .ply
-pc = pcread('./data/noisy_pointCloud_example_1.ply');
+pc = pcread('./data/single_superquadric/noisy_pointCloud_example_1.ply');
 point = pc.Location';
 
 %% Superquadric Recovery
